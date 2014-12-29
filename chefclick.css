@@ -1,0 +1,76 @@
+
+body{}
+.paneSelector{
+    width:10%;
+    float:left;
+    text-align:center;
+    margin:1em 0;
+    line-height:2em;
+    border:2px solid black;
+    background-color:#fff;
+}
+.paneSelector:hover{
+    text-decoration:underline;
+    text-shadow: none;
+    cursor:pointer;
+}
+.selected{
+    border-bottom:none;
+    background:none;
+    color:white;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+.selected:hover{
+    text-decoration:none;
+    cursor:auto;
+    background:none;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+button{
+    width:170px;
+    border:2px solid black;
+    background-color:#fff;
+    margin-right:10px;
+    padding:0.1em;
+    font-size:1.0em;
+    font-weight:500;
+}
+button:hover{
+    background-color:#eee;
+}
+button:disabled{
+    color:#ccc;
+    font-weight:normal;
+}
+.job10{
+    display:none;
+}
+.job100{
+    display:none;
+}
+.jobNone{
+    display:none;
+}
+.x10{
+    width:48px;
+    text-shadow:none;
+    font-weight:normal;
+    font-size:0.9em;
+}
+.x100{
+    width:48px;
+    text-shadow:none;
+    font-weight:normal;
+    font-size:0.9em;
+}
+.x1000{
+    width:48px;
+    text-shadow:none;
+    font-weight:normal;
+    font-size:0.9em;
+}
+.buildingnames{padding-left:5px;}
+.buildingten{display:none;}
+.buildinghundred{display:none;}
+.buildingthousand{display:none;}
+#buildings button{margin-right:3px;}

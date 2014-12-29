@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="Title" />
+    <title>Head Chef</title>
+    <link rel="stylesheet" type="text/css" href="notify-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="chefclick.css" />
+    <style type="text/css">
+        #staffPane {
+        }
+    </style>
+
+
+</head>
+<body>
+<span id="summarystats">
+    Customers: <span id="customers">0</span><br />
+    Customer Satisfaction: <span id="customersatisfaction">Satisfied</span><br />
+    Dollars: <span id="dollars">0</span><br />
+    Open concessions: <span id="openconcessions">0</span><br />
+    Land <span id="openland">0</span>
+</span>
+<br /><br />
+<button onclick="chefClick(1)">Cook meal</button>Fulfill a customer's order<br />
+<button onclick="workconcession(1)">Work concession</button> Open up new concessions<br />
+<button onclick="workland(1)">Improve Land</button> Develop new land
+<br />
+
+<div id="panesSelectors">
+    <div id="selectors">
+        <div id="selectIngredients" class="paneSelector selected" onclick="paneSelect('ingredients')">Ingredients</div>
+        <div id="selectStaff" class="paneSelector" onclick="paneSelect('staff')">Staff</div>
+        <div id="selectBuildings" class="paneSelector" onclick="paneSelect('buildings')">Buildings</div>
+        <div id="selectEquipment" class="paneSelector" onclick="paneSelect('equipment')">Equipment</div>
+        <div id="selectRecipes" class="paneSelector" onclick="paneSelect('recipes')">Recipes</div>
+        <div style="clear:both;"></div>
+    </div>
+    <div id="ingredientsPane">
+        <p>Buy ingredients for your recipes</p>
+    </div>
+    <div id="staffPane">
+        <button onclick="buyCook()">Hire line cook</button> Line cooks work concessions, food trucks or diners
+        <br />
+        Line cooks employed: <span id="cooks">0</span>
+        <br />
+        Line cook salary: <span id="cookCost">10</span>
+        <br />
+    </div>
+    <div id="buildingsPane">
+        <p>Buy or rent space</p>
+
+
+    </div>
+    <div id="equipmentPane">
+        <p>Expand capacity with new and rented equipment</p>
+        <table id="equipment">
+            <tr id="standrow">
+                <td><button onmousedown="createBuilding(stand,1)">Hot dog stand</button></td>
+                <td class="equipten"><button class="x10" onmousedown="createBuilding(stand,10)">x10</button></td>
+                <!--<td class="buildinghundred"><button class="x100" onmousedown="createBuilding(tent,100)">x100</button></td>-->
+                <!--<td class="buildingthousand"><button class="x1000" onmousedown="createBuilding(tent,1000)">x1k</button></td>-->
+                <td class="equipnames">Hot dog stands: </td>
+                <td class="number"><span id="stands">0</span></td>
+                <td><span class="cost">$100, 1 concession</span><span class="note">: $1 profit per meal.</span></td>
+            </tr>
+            <tr id="foodtruckrow">
+                <td><button onmousedown="createBuilding(truck,1)">Food truck</button></td>
+                <td class="equipten"><button class="x10" onmousedown="createBuilding(truck,10)">x10</button></td>
+                <!--<td class="buildinghundred"><button class="x100" onmousedown="createBuilding(truck,100)">x100</button></td>-->
+                <!--<td class="buildingthousand"><button class="x1000" onmousedown="createBuilding(truck,1000)">x1k</button></td>-->
+                <td class="equipnames">Trucks: </td>
+                <td class="number"><span id="trucks">0</span></td>
+                <td><span class="cost">$1,0000, 5 recipes</span><span class="note">: $3 profit per meal.</span></td>
+            </tr>
+        </table>
+    </div>
+    <div id="recipesPane">
+        <p>Learn how to make new recipes</p>
+    </div>
+</div>
+
+<script language="javascript" src="./main.js"></script>
+<script type="text/javascript" src="notify.min.js"></script>
+</body>
+</html>
