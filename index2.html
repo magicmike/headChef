@@ -22,41 +22,39 @@
     Land <span id="openland">0</span>
 </span>
 <br /><br />
-<button onclick="chefClick(1)">Cook meal</button>Fulfill a customer's order<br />
-<button onclick="workconcession(1)">Work concession</button> Open up new concessions<br />
-<button onclick="workland(1)">Improve Land</button> Develop new land
+<button class="actionbutton" data-func="chefClick" data-args="1">Cook meal</button>Fulfill a customer's order<br />
+<button class="actionbutton" data-func="workConcession" data-args="1">Work concession</button> Open up new concessions<br />
+<button class="actionbutton" data-func="workLand" data-args="1">Improve Land</button> Develop new land
 <br />
 
 <div id="panesSelectors">
     <div id="selectors">
-        <div id="selectIngredients" class="paneSelector selected" onclick="paneSelect('ingredients')">Ingredients</div>
-        <div id="selectStaff" class="paneSelector" onclick="paneSelect('staff')">Staff</div>
-        <div id="selectBuildings" class="paneSelector" onclick="paneSelect('buildings')">Buildings</div>
-        <div id="selectEquipment" class="paneSelector" onclick="paneSelect('equipment')">Equipment</div>
-        <div id="selectRecipes" class="paneSelector" onclick="paneSelect('recipes')">Recipes</div>
+        <div id="selectIngredients" class="paneSelector" >Ingredients</div>
+        <div id="selectStaff" class="paneSelector" >Staff</div>
+        <div id="selectBuildings" class="paneSelector">Buildings</div>
+        <div id="selectEquipment" class="paneSelector">Equipment</div>
+        <div id="selectRecipes" class="paneSelector">Recipes</div>
         <div style="clear:both;"></div>
     </div>
-    <div id="ingredientsPane">
+    <div id="ingredientsPane" class="pane">
         <p>Buy ingredients for your recipes</p>
     </div>
-    <div id="staffPane">
-        <button onclick="buyCook()">Hire line cook</button> Line cooks work concessions, food trucks or diners
+    <div id="staffPane" class="pane">
+        <button class="actionbutton" data-func="buyCook" data-args="1">Hire line cook</button> Line cooks work concessions, food trucks or diners
         <br />
         Line cooks employed: <span id="cooks">0</span>
         <br />
         Line cook salary: <span id="cookCost">10</span>
         <br />
     </div>
-    <div id="buildingsPane">
+    <div id="buildingsPane" class="pane">
         <p>Buy or rent space</p>
-
-
     </div>
-    <div id="equipmentPane">
+    <div id="equipmentPane" class="pane">
         <p>Expand capacity with new and rented equipment</p>
         <table id="equipment">
             <tr id="standrow">
-                <td><button onmousedown="createBuilding(stand,1)">Hot dog stand</button></td>
+                <td><button id="createbuilding" data-building="stand">Hot dog stand</button></td>
                 <td class="equipten"><button class="x10" onmousedown="createBuilding(stand,10)">x10</button></td>
                 <!--<td class="buildinghundred"><button class="x100" onmousedown="createBuilding(tent,100)">x100</button></td>-->
                 <!--<td class="buildingthousand"><button class="x1000" onmousedown="createBuilding(tent,1000)">x1k</button></td>-->
@@ -75,11 +73,11 @@
             </tr>
         </table>
     </div>
-    <div id="recipesPane">
+    <div id="recipesPane" class="pane">
         <p>Learn how to make new recipes</p>
     </div>
 </div>
-
+<script src="./jquery-2.1.3.min.js"></script>
 <script language="javascript" src="./main.js"></script>
 <script type="text/javascript" src="notify.min.js"></script>
 </body>
