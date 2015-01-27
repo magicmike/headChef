@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Title" />
     <title>Head Chef</title>
-    <link rel="stylesheet" type="text/css" href="notify-light.min.css" />
-    <link rel="stylesheet" type="text/css" href="chefclick.css" />
+    <!--<link rel="stylesheet" type="text/css" href="notify-light.min.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="chefclick.css" />-->
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css"/>
     <style type="text/css">
         #staffPane {
         }
@@ -14,71 +16,140 @@
 
 </head>
 <body>
-<span id="summarystats">
-    Customers: <span id="customers">0</span><br />
-    Customer Satisfaction: <span id="customersatisfaction">Satisfied</span><br />
-    Dollars: <span id="dollars">0</span><br />
-    Open concessions: <span id="openconcessions">0</span><br />
-    Land <span id="openland">0</span>
-</span>
-<br /><br />
-<button class="actionbutton" data-func="chefClick" data-args="1">Cook meal</button>Fulfill a customer's order<br />
-<button class="actionbutton" data-func="workConcession" data-args="1">Work concession</button> Open up new concessions<br />
-<button class="actionbutton" data-func="workLand" data-args="1">Improve Land</button> Develop new land
-<br />
+<div class="modal fade" id="startmodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Head Chef Overview</strong></h4>
+            </div>
+            <div class="modal-body">
+                <p>You are a scrappy startup chef trying to break into the big time. Work your way up from a hot dog stand
+                    to owning a chain of restaurants and more. Hire workers, buy ingredients and open stores.</p>
+                <p>This game is a Fast Clicker. It is designed to last a short while - perhaps a hour or two, and you can play
+                several times to work out the best strategy.</p>
+                <p><strong>Note:</strong> Your customers start turning up immediately. If there are too many in a line, they will
+                    get annoyed, leave and might complain to their friends. Start by clicking "serve a hot dog".
+                    On the other hand, sometimes looking busy is good too..&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">I'm Ready!</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-<div id="panesSelectors">
-    <div id="selectors">
-        <div id="selectIngredients" class="paneSelector" >Ingredients</div>
-        <div id="selectStaff" class="paneSelector" >Staff</div>
-        <div id="selectBuildings" class="paneSelector">Buildings</div>
-        <div id="selectEquipment" class="paneSelector">Equipment</div>
-        <div id="selectRecipes" class="paneSelector">Recipes</div>
-        <div style="clear:both;"></div>
-    </div>
-    <div id="ingredientsPane" class="pane">
-        <p>Buy ingredients for your recipes</p>
-    </div>
-    <div id="staffPane" class="pane">
-        <button class="actionbutton" data-func="buyCook" data-args="1">Hire line cook</button> Line cooks work concessions, food trucks or diners
-        <br />
-        Line cooks employed: <span id="cooks">0</span>
-        <br />
-        Line cook salary: <span id="cookCost">10</span>
-        <br />
-    </div>
-    <div id="buildingsPane" class="pane">
-        <p>Buy or rent space</p>
-    </div>
-    <div id="equipmentPane" class="pane">
-        <p>Expand capacity with new and rented equipment</p>
-        <table id="equipment">
-            <tr id="standrow">
-                <td><button id="createbuilding" data-building="stand">Hot dog stand</button></td>
-                <td class="equipten"><button class="x10" onmousedown="createBuilding(stand,10)">x10</button></td>
-                <!--<td class="buildinghundred"><button class="x100" onmousedown="createBuilding(tent,100)">x100</button></td>-->
-                <!--<td class="buildingthousand"><button class="x1000" onmousedown="createBuilding(tent,1000)">x1k</button></td>-->
-                <td class="equipnames">Hot dog stands: </td>
-                <td class="number"><span id="stands">0</span></td>
-                <td><span class="cost">$100, 1 concession</span><span class="note">: $1 profit per meal.</span></td>
-            </tr>
-            <tr id="foodtruckrow">
-                <td><button onmousedown="createBuilding(truck,1)">Food truck</button></td>
-                <td class="equipten"><button class="x10" onmousedown="createBuilding(truck,10)">x10</button></td>
-                <!--<td class="buildinghundred"><button class="x100" onmousedown="createBuilding(truck,100)">x100</button></td>-->
-                <!--<td class="buildingthousand"><button class="x1000" onmousedown="createBuilding(truck,1000)">x1k</button></td>-->
-                <td class="equipnames">Trucks: </td>
-                <td class="number"><span id="trucks">0</span></td>
-                <td><span class="cost">$1,0000, 5 recipes</span><span class="note">: $3 profit per meal.</span></td>
-            </tr>
-        </table>
-    </div>
-    <div id="recipesPane" class="pane">
-        <p>Learn how to make new recipes</p>
+<p>&nbsp;</p>
+<!--Top area above the tabs row-->
+<div class="container-fluid">
+    <div class="row">
+        <!--First column showing stats-->
+        <div class="col-xs-6 col-sm-4 col-lg-4">
+            <span id="summarystats">
+                Customers: <span id="customers">0</span><br />
+                Customer Satisfaction: <span id="customersatisfaction">Satisfied</span><br />
+                Dollars: <span id="dollars">0</span><br />
+                Open concessions: <span id="openconcessions">0</span><br />
+                Land <span id="openland">0</span>
+            </span>
+        </div>
+        <!--Second column with buttons-->
+        <div class="col-xs-6 col-sm-6 col-lg-6">
+            <p><button class="actionbutton btn btn-primary" data-func="hotDogClick" data-args="1">Serve Hot Dog</button> Serve customer</p>
+            <p><button class="actionbutton btn btn-default" data-func="workConcession" data-args="1">Work concession</button> Open up new concessions</p>
+            <p><button class="actionbutton btn btn-info" data-func="workLand" data-args="1">Improve Land</button> Develop new land</p>
+        </div>
     </div>
 </div>
+
+<!--Tabs-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#Staff" data-toggle="tab"><strong>Staff</strong></a></li>
+            <li role="presentation"><a href="#Ingredients" data-toggle="tab"><strong>Ingredients</strong></a></li>
+            <li role="presentation"><a href="#Locations" data-toggle="tab"><strong>Locations</strong></a></li>
+            <li role="presentation"><a href="#Equipment" data-toggle="tab"><strong>Equipment</strong></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="Staff">
+                <p>&nbsp;</p>
+                <button id="lineCookButton" class="actionbutton btn btn-default" data-func="buyCook" data-args="1">Hire line cook</button> Line cooks work concessions, food trucks or diners
+                <br />
+                Line cooks employed: <span id="cooks">0</span>
+                <br />
+                Line cook salary: <span id="cookCost">10</span>
+                <br />
+            </div>
+            <div class="tab-pane" id="Ingredients">
+                Buy ingredients for your recipes.
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table id="ingredientslist" class="table table-striped">
+                                <tr>
+                                    <td><strong>Inventory</strong></td>
+                                    <td><strong>Cost</strong></td>
+                                    <td><strong>Hire a buyer</strong></td>
+                                    <td><strong>Staff</strong></td>
+                                </tr>
+                                <tr id="basicrow">
+                                    <td>Basic ingredients: <span id="basicingredients">10</span></td>
+                                    <td><button class="actionbutton btn btn-default" data-func="buyIngredients" data-args="basic 1">0.25</button></td>
+                                    <td><button class="actionbutton btn btn-default" data-func="hireBuyer" data-args="basic 1">10</button></td>
+                                    <td>Basic buyer's salary: <span id="basicbuyers">0</span></td>
+                                </tr>
+                                <tr id="fancyrow">
+                                    <td>Regular ingredients: <span id="regularingredients">0</span></td>
+                                    <td><button class="actionbutton btn btn-default" data-func="buyIngredients" data-args="{fancy: 1, basic: 0}" data-number="1">5</button></td>
+                                    <td><button class="actionbutton btn btn-default" data-func="hireBuyer" data-args="fancy" data-number="1">25</button></td>
+                                    <td>Fancy buyer's salary: <span id="fancybuyers">0</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="Locations">
+                Buy or rent space. You start with a rental of one hot dog stand, which costs 10 dollars / 60 ticks
+            </div>
+            <div class="tab-pane" id="Equipment">
+                Equipment Options
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                <table id="equiplist" class="table table-striped">
+                    <tr id="standrow">
+                        <td><button class="btn btn-default" data-func="createBuilding" data-args="stand" data-number="1">Hot dog stand</button></td>
+                        <td><button class="btn btn-default" data-func="createBuilding" data-args="stand" data-number="10">x10</button></td>
+                        <td><button class="btn btn-default" data-func="createBuilding" data-args="stand" data-number="100">x100</button></td>
+                        <td><button class="btn btn-default" data-func="createBuilding" data-args="stand" data-number="1000">x1000</button></td>
+                        <td class="equipnames">Hot dog stands: </td>
+                        <td class="number"><span id="stands">0</span></td>
+                        <td><span class="cost">$100, 1 concession</span><span class="note">: $1 profit per meal.</span></td>
+                    </tr>
+                    <tr id="foodtruckrow">
+                        <td><button class="btn btn-default" data-func="createBuilding" data-args="truck" data-number="1">Food truck</button></td>
+                        <td class="equipten"><button class="x10 btn btn-default" onmousedown="createBuilding(truck,10)">x10</button></td>
+                        <td class="buildinghundred"><button class="x100 btn btn-default" onmousedown="createBuilding(truck,100)">x100</button></td>
+                        <td class="buildingthousand"><button class="x1000 btn btn-default" onmousedown="createBuilding(truck,1000)">x1k</button></td>
+                        <td class="equipnames">Trucks: </td>
+                        <td class="number"><span id="trucks">0</span></td>
+                        <td><span class="cost">$1,0000, 5 recipes</span><span class="note">: $3 profit per meal.</span></td>
+                    </tr>
+                </table>
+                            </div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+
 <script src="./jquery-2.1.3.min.js"></script>
+<script src="Bootstrap/js/bootstrap.min.js"></script>
 <script language="javascript" src="./main.js"></script>
 <script type="text/javascript" src="notify.min.js"></script>
 </body>
 </html>
+
